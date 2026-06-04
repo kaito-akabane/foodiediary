@@ -1,4 +1,4 @@
-﻿package foodiediary.storage;
+package foodiediary.storage;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

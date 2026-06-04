@@ -28,7 +28,6 @@ server:
 
 app:
   restaurant:
-    csv-path: classpath:data/restaurant.csv
     batch-size: 1000
 
 storage:

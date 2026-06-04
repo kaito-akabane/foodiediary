@@ -1,4 +1,4 @@
-﻿package foodiediary.storage;
+package foodiediary.storage;
 
 import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;

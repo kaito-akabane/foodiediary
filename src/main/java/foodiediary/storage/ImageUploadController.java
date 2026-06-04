@@ -1,4 +1,4 @@
-﻿package foodiediary.storage;
+package foodiediary.storage;
 
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class ImageUploadController {
 
 	private final StorageService storageService;
 
-	@PostMapping("foodiediary/upload")
+	@PostMapping("/foodiediary/upload")
 	public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) throws IOException {
 		String imageUrl = storageService.uploadImage(file);
 		return ResponseEntity.ok(imageUrl);

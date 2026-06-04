@@ -32,8 +32,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String uri = request.getRequestURI();
 
-        // 로그인, 회원가입 등은 토큰 검증 없이 통과
-        if (excludePaths.contains(uri)) {
+        // 로그인, 회원가입, 업로드 정적 파일은 토큰 검증 없이 통과
+        if (excludePaths.contains(uri) || uri.startsWith("/uploads")) {
             filterChain.doFilter(request, response);
             return;
         }

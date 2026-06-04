@@ -1,4 +1,4 @@
-﻿package foodiediary.storage;
+package foodiediary.storage;
 
 import jakarta.annotation.PostConstruct;
 import java.io.IOException;

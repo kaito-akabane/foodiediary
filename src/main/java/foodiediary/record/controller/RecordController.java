@@ -61,7 +61,7 @@ public class RecordController {
         return ResponseEntity.ok().build();
     }
     
-    @DeleteMapping("delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<?> deleteRecord(
             @RequestParam Long id
     ) {
@@ -109,7 +109,8 @@ public class RecordController {
     }
 
     @PostMapping("/like")
-    public ResponseEntity<?> recordLike(RecordLikeDto likeDto){
+    public ResponseEntity<?> recordLike(@RequestParam("recordId") long recordId) {
+        RecordLikeDto likeDto = new RecordLikeDto(recordId);
         try {
             recordService.saveRecordLike(likeDto);
             return ResponseEntity.ok("좋아요 반영 성공");
