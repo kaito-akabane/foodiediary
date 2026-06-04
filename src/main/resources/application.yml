@@ -1,0 +1,48 @@
+﻿spring:
+  application:
+    name: foodiediary
+  profiles:
+    include: jwt, local
+
+  # DB CONNECTION INFO
+  datasource:
+    url: jdbc:mariadb://localhost:3306/foodiediary
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 30MB
+
+server:
+  address: 0.0.0.0
+  port: 8080
+
+app:
+  restaurant:
+    csv-path: classpath:data/restaurant.csv
+    batch-size: 1000
+
+storage:
+  local:
+    upload-dir: ./data/uploads
+    public-base-url: http://localhost:8080
+
+# AWS S3 (placeholder)
+cloud:
+  aws:
+    credentials:
+      access-key:
+      secret-key:
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket:

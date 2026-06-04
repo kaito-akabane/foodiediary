@@ -11,7 +11,7 @@ import foodiediary.record.entity.RecordImage;
 import foodiediary.record.entity.RecordVisibility;
 import foodiediary.record.repository.RecordImageRepository;
 import foodiediary.record.repository.RecordRepository;
-import foodiediary.s3.S3Service;
+import foodiediary.storage.StorageService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -34,7 +34,7 @@ public class RecordService {
     
     private final RecordRepository recordRepository;
     private final RecordImageRepository imageRepository;
-    private final S3Service s3Service;
+    private final StorageService storageService;
     private final FriendshipRepository friendshipRepository;
     
     @Transactional
@@ -69,7 +69,7 @@ public class RecordService {
                 // 1) DB에서 삭제
                 imageRepository.deleteByImagePath(url);
                 // 2) S3에서 삭제
-                s3Service.deleteImageByUrl(url);
+                storageService.deleteImageByUrl(url);
             }
         }
         
@@ -103,7 +103,7 @@ public class RecordService {
     private void uploadImages(List<MultipartFile> images, Long id) throws IOException {
         if (images != null) {
             for (MultipartFile image : images) {
-                String imageUrl = s3Service.uploadImage(image); // S3 업로드 후 URL 반환
+                String imageUrl = storageService.uploadImage(image);
                 RecordImage imagePath = RecordImage.builder()
                         .recordId(id)
                         .imagePath(imageUrl)

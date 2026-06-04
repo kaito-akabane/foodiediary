@@ -1,4 +1,4 @@
-package foodiediary.s3;
+﻿package foodiediary.storage;
 
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
@@ -10,12 +10,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
-public class S3Controller {
-	private final S3Service s3Service;
-	
+public class ImageUploadController {
+
+	private final StorageService storageService;
+
 	@PostMapping("foodiediary/upload")
 	public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) throws IOException {
-		String imageUrl = s3Service.uploadImage(file);
+		String imageUrl = storageService.uploadImage(file);
 		return ResponseEntity.ok(imageUrl);
 	}
 }
